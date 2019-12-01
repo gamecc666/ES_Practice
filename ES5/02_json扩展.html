@@ -1,0 +1,27 @@
+<!--
+	作者：gamecc666
+	时间：2019-12-01
+	描述：json扩展
+		1：Json.stringify(obj/arr)
+			*js对象（数组）转换为json对象（数组）
+		2：JSON.parse(json)
+			*json对象（数组）转换为js对象（数组）		
+		3:常识
+			*JSON只有对象和数组没有字符串
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	var obj={username:'kebi'};
+	obj=JSON.stringify((obj));
+	console.log(obj+'||'+typeof obj);
+	obj=JSON.parse(obj);
+	console.log(obj+'||'+typeof obj);
+</script>

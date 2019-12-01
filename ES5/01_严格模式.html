@@ -1,0 +1,51 @@
+<!--
+	作者：gamecc666
+	时间：2019-12-01
+	描述：严格模式
+		1: 简述
+			*使Javascript在更严格的语法条件下运行
+		2：目的
+			*消除代码的不合理&不安全隐患
+		3：用法
+			*根据作用域分为全局/函数；用的时候只要将各域中的第一句定义为：‘use strict’
+			*如果浏览器不支持的话，椰子灰解析为一条简单语句没、
+		4：语法
+			*必须使用var声明变量
+			* 禁止自定义的函数中this指向window
+			* 创建eval作用域
+			* 对象不能有重名
+-->
+<!--
+	1
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<br />		
+	</body>
+</html>
+<script type="text/javascript">
+	'use strict';
+	var username='kebi';
+	console.log(username); 
+	
+	function Persion(name,age){
+		this.name=name;
+		this.age=age;		
+	}
+	new Persion('kebi',12);       //new的话指向实例对象就不会报错了，bunew的话就会出现函数中this指向window
+	
+	var str='NBA'
+	eval("var str='CBA'; alert(str)");           //不安全不建议使用
+	alert(str);                                  //eval在严格模式下创建了自己的作用域，不污染全局变量
+	
+	var obj={                   //严格模式下不允许有重名
+		username:'kebi',
+		username:'kebi' 
+	};
+	
+</script> 
