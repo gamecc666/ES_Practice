@@ -1,0 +1,37 @@
+<!--
+	作者：gamecc666
+	时间：2019-12-03
+	描述：对象本身的两个方法
+		*get propertyName(){}   获得当前属性值的回调函数
+		*set propertyName(){}   监听属性值变化的回调函数
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	var obj={
+		firstname:'curry',
+		lastname:'stepen',
+		get fullName(){               //可使用该方法实现类似dotnet的属性访问权限
+			return this.firstname+' '+this.lastname;
+		},
+		set fullName(data){
+			console.log('set(data):'+data);
+			var names=data.split(' ');
+			this.firstname=names[0];
+			this.lastname=names[1];
+		}
+		
+	};
+	obj.firstname='gamecc';
+	console.log(obj.firstname);
+	console.log(obj);
+	obj.fullName='kobi brant';
+	console.log(obj.fullName);
+</script>

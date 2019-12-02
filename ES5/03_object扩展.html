@@ -1,0 +1,65 @@
+<!<!--
+	作者：gamecc666
+	时间：2019-12-03
+	描述：ES5给object扩展了一些静态方法，常用的2个：
+		1：Object.create(prototype,[descriptprs])
+			*作用：以指定的对象为原型创建新的对象
+			*为新的对象指定新的属性，并对属性进行描述
+				-value：指定键
+				-writable：标识当前属性值是否可以修改，默认false
+				-configurable:标识当前属性是否能被删除，默认为false
+				-enumerable：标识当前属性是否能用for in 枚举，默认false
+		2：Objec.defineProperties(object,descriptors)
+			*作用：为指定的对象扩展多个属性
+				-get：获取当前的属性值的回调函数
+				-set：设置当前属性值的触发的回调函数，并且实参即为修改后的值
+			* 存取器属性：setter，getter一个用来存值，一个用来取值
+		3：惰性求值	
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	var obj={username:'dumb',age:20};
+	var obj1={};
+	obj1=Object.create(obj,{
+		sex:{
+			value:'男',
+			writable:true,
+			configurable:true,
+			enumerable:true
+		}
+	}); 
+	obj1.sex='女';    //无法修改是因为默认情况下的writable：false
+//	delete obj1.sex;  //删不掉是因为configurable:false
+//	console.log(obj1);
+	for(var i in obj1){
+		console.log(i);  //枚举不出来属性是因为enumerable:false
+	}
+	
+	//Objec.defineProperties(object,descriptors)
+	var obj2={firstname:'kebi',lastname:'brant'};
+	Object.defineProperties(obj2,{
+		fullName:{
+			get:function(){               //获取属性值的时候get()自动调用
+				console.log('get()');
+				return this.firstname+' '+this.lastname;
+			},
+			set:function(data){           //data:属性值变化后自动调用将变化值传进来
+				console.log('set(data):'+data);
+				var names=data.split(' ');
+				this.firstname=names[0];
+				this.lastname=names[1];
+			}
+		} 
+	})
+	console.log(obj2.fullName); 
+	obj2.fullName='tame zore';
+	console.log(obj2.fullName);
+</script>
