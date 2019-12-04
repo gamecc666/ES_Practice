@@ -1,0 +1,47 @@
+<!--
+	作者：gamecc666
+	时间：2019-12-05
+	描述：函数扩展
+		1:Function.protype.bind(obj)
+			*作用：将函数内的this绑定为obj，并将函数返回
+		2:面试题：区别bind()与call()和apply()
+			*都能指定函数中的this
+			* call()/apply()是立即调用函数
+			* bind()是将函数返回	
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<h2>gamecc666</h2>
+	</body>
+</html>
+<script type="text/javascript">
+	obj={username:'kebi'}
+	function fun1(param){
+		console.log(this,param);
+	}
+	function fun2(parma1,param2)
+	{
+		console.log(this,parma1,param2);
+	}
+	function fun3(param){
+		console.log(this,param);
+	}
+	//foo();
+	fun1.call(obj,22);            //直接从第二个参数开始读取依次传入
+	fun2.apply(obj,[11,33]);      //第二个参数必须是数组
+	var temp= fun3.bind(obj,34);  //bind返回值是一个函数，不会立即调用
+	temp();                       //传参方式与call一样  
+	//fun3(obj,32)();               //简写方式
+	console.log('---------定时器变换对象||对比-----------');
+	setTimeout(function(){
+		console.log(this);
+	},1000)
+	setTimeout(function(){
+		console.log(this);
+	}.bind(obj),1000)
+</script>
