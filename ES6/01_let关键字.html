@@ -1,0 +1,56 @@
+<!--
+	作者：gamecc666
+	时间：2019-12-06
+	描述：let关键字的使用
+		1.作用：
+			*与var类似，用于声明一个变量
+		2.特点：
+			*在块作用域内有效
+			*不能重复声明
+			*不会预处理（预编译），不准在提升
+				*预编译过程；就是寻找var,function关键字，所以你在function之前是可以调用var变量和函数的
+		3.应用：
+		 	*循环遍历加监听
+		 	* 使用let取代var是趋势
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<h2>gamecc666</h2>
+		<br />
+		<button>测试1</button>
+		<br />
+		<button>测试2</button>
+		<br />
+		<button>测试3</button>
+		<br />
+	</body>
+</html>
+<script type="text/javascript">
+	//let str='22';               //不能重复声明
+	//console.log(str);             //变量没有提升没有预处理
+	//console.log(info);              //不会报错，只是未定义只有声明
+	var info='gamecc666';
+	let str='111';
+	console.log(str);
+	console.log('----------------------------');
+	let btns=document.getElementsByTagName('button');
+	for(let i=0;i<btns.length;i++){      //比较let与var的区别
+		var btn=btns[i];		
+		//出错原因钩子函数
+		btn.onclick=function(){
+			alert(i);
+		}
+		//解决方法一：var=>let(因为let有自己的块级作用域)		
+        //解决方法二
+		//(function(i){
+			//btn.onclick=function(){
+				//alert(i);
+			//}
+		//})(i);
+	}
+</script>
