@@ -1,0 +1,37 @@
+<!--
+	作者：gamecc666
+	时间：2019-12-07
+	描述：变量的解构赋值（解析你的结构然后赋值）
+		1.理解：
+			*从对象或数组中提取数据，并赋值给变量（多个）
+		2.对象的解构赋值
+			*let{a,b}={a:'12',b:'43'}
+		3.数组的解构赋值
+			$let[a,b]=[1,'gamecc'];
+		4.用途
+			*给多个形参赋值
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h2>gamecc666</h2>
+	</body>
+</html>
+<script type="text/javascript">
+	let obj={username:'gamecc',age:12};
+	let {username,sex}=obj;
+	let {age}=obj;
+	console.log(username,sex,age);    //必须和结构的数据相对应
+	console.log('---------数组解构赋值--------------');
+	let arr=[1,'gamecc',true, 23];
+	let[a,b, ,d]=arr;
+	console.log(a,d);
+	function FunInfo({username,age}){     //参数要和要结构的类型保持一致，否则会出错
+		console.log(username+'||'+age);
+	}
+	FunInfo(obj);
+</script>
