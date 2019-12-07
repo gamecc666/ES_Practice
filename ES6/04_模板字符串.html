@@ -1,0 +1,26 @@
+<!--
+	作者：gamecc666
+	时间：2019-12-07
+	描述：模板字符串
+		1.用途：简化字符串的拼接
+		2.用法：
+			*模板字符串必须用到 `` 不是单引号（注意）
+			* 变化的部分使用${xxx}定义
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h2>gamecc666</h2>
+	</body>
+</html>
+<script type="text/javascript">
+	let obj={username:"gamecc",age:23};
+	let str="用户名是："+obj.username+",年龄是："+obj.age;
+	console.log("输出未使用模板字符串的方法："+str);
+	let usestr=`用户名是${obj.username},年龄是${obj.age}岁`;
+	console.log("使用模板字符串之后的结果："+usestr);
+</script>

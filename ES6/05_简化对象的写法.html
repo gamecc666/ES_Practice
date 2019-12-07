@@ -1,0 +1,40 @@
+<!--
+	作者：gamecc666
+	时间：2019-12-07
+	描述：简化对象的写法
+		1.用法
+		 	*省略同名的属性值
+		 	* 省略方法的function
+		 	* 例如：
+		 		let x=1;
+		 		let y=2;
+		 		let point={
+		 			x,
+		 			y,
+		 			set(x,y){this.x=x}
+		 		};
+
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h2>gamecc666</h2>
+	</body>
+</html>
+<script type="text/javascript">
+	let username='gamecc';
+	let age=24;
+	let stu={
+		username,                   //同名属性可以省略
+		age,
+		getName(){                  //省略对象中的 :function
+			return this.username;
+		}
+	};
+	console.log(stu);
+	console.log(stu.getName());
+</script>
