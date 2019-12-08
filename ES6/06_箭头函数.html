@@ -1,0 +1,83 @@
+<!--
+	作者：gamecc666
+	时间：2019-12-08
+	描述：箭头函数
+			1.作用：定义匿名函数
+			2.基本语法：
+				*没有参数:()=>console.log('xxxxxxxxxxxxxxxx');
+				*一个参数：(x)=>i+2;
+				*大于一个参数：(x,y)=>x+y;
+				*函数体不用大括号：默认返回结果
+				*函数体如果有多个语句，需要用{}包围，若有需要返回的内容需要手动返回
+			3.使用场景：多用来定义回调函数
+			4.特点：
+				*简洁
+				* 箭头函数没有自己的this,箭头函数的this,不是调用的时候决定的，而是在定义的时候处在的对象就是它的this（重要）
+				* 理解：箭头函数的this看外层的是否有函数
+				   	    如果有，外层函数的this就是内层函数的this
+				   	    如果没有，则this就是window							
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h2>箭头函数</h2>
+		<button id='btn1'>测试箭头函数this_1</button>
+		<button id='btn2'>测试箭头函数this_2</button>
+	</body>
+</html>
+<script type="text/javascript">
+	let fun=function(x,y){
+		console.log(`普通函数的输出结果:${x+y};`);
+	}
+	fun(1,3);
+	
+	/*
+	 * 函数体只有一条语句或者表达式的时候大括号可以省略，会自动返回执行结果或者是表达式结果
+	 * 但是只有一条语句的时候，如果加上大括号的话需要手动返回结果使用return否则报错
+	 */
+	let fun1=()=>console.log("无参箭头函数的输出：gamecc666");  
+    fun1();                                                    
+	let fun2=x=>x;
+	let res=fun2(8);
+	console.log(`一个参数的箭头函数输出：${res};`);
+	let fun3=(x,y)=>x+y;         //两个以上的形参时小括号不能省略
+	let res3=fun3(20,18);
+	console.log(`两个参数的箭头函数:${res3}`);
+	/*
+	 * 函数体不止一条语句；
+	 * 如果函数没有返回结果的话默认为undefined
+	 */
+	let fun4=(x,y)=>{
+		return x+y;
+	}
+	let res4=fun4(65,12);
+	console.log(`函数体不止一条语句的时候输出结果:${res4}`);
+	console.log('--------------箭头函数的this-------------');
+	/*
+	 * 普通函数的this，指的是调用它的那个对象
+	 */
+	let btn1=document.getElementById('btn1');
+	let btn2=document.getElementById('btn2');
+	btn1.onclick=function(){                    //普通的是调用它的对象
+		console.log(this);
+	}
+	btn2.onclick=()=>console.log(this);         //箭头函数所处的环境：window
+	let obj={
+		name:'gamecc666',
+		getName:function(){
+			btn2.onclick=()=>console.log(this); //此时是obj(因为它外层有一个函数，函数对象的this是obj)
+		} 
+	}
+	obj.getName();
+	
+	let obj1={
+		name:'gamecc777',
+		getName:()=>{
+			btn2.onclick=()=>console.log(this);   //此时是window(因为它外面的还是箭头函数，且箭头函数外面没有函数所以是window)
+		}
+	}
+</script>
