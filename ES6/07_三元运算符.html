@@ -1,0 +1,48 @@
+<!--
+	作者：gamecc666
+	时间：2019-12-09
+	描述：三点运算符
+		用途
+			1.rest(可变)参数
+				*用来取代arguments,但比arguments灵活，只能是最后部分参数
+			2.扩展运算符
+				let arr1=[1,2,3];
+				let arr2=[4,...arr1,6];
+				arr2.push(...arr1);
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h2>gamecc666</h2>
+	</body>
+</html>
+<script type="text/javascript">
+	function fun(a,b)
+	{
+		console.log(arguments);     //arguments:伪数组,不能使用数组的方法
+//		arguments.forEach(function(item,index){       //会报错
+//			console.log(item,index);
+//		})
+//		arguments.callee();         //指向函数本书
+	} 
+	fun(3,8);
+	
+	console.log('——————————使用三点运算符输出结果——————————');
+	function fun1(a,...value){
+		console.log(arguments);
+		console.log(value);
+		value.forEach(function(item,index){
+			console.log('--1--',item,index);
+		})
+	}
+	fun1(20,23,33,74,56);
+	console.log('-----扩展运算符-------');
+	let arr=[1,6];
+	let arr1=[2,3,4,5]
+	arr=[1,...arr1,6];
+	console.log(arr);
+</script>
