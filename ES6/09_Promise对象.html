@@ -1,0 +1,70 @@
+<!--
+	作者：gamecc666
+	时间：2019-12-12
+	描述：Promise对象
+		1.理解：
+			*代表了将来某个将要发生的事件（通常是一个异步操作）
+			*有了Promise对象可以将异步操作以同步的流程表达出来，避免了层层的嵌套（俗称回调地狱）
+			* ES6的Promise是一个构造函数，用来生成promise实例
+		2.使用步骤：
+			*创建Promise对象
+				let promise=new Promise((resolve,reject)=>{
+					//初始化promise的专状态为pending
+					//执行异步操作
+					if(异步操作成功)
+					{
+						resolve(value); //修改promise的状态为fullfilled
+					}
+					else{
+						reject(errMsg); //修改promise的状态为rejected
+					}
+				})
+			*调用promise的then()
+				promise.then(functino()
+					result=>console.log(result);,
+					errorMsg=>alert(errMsg)
+				)
+		3.promise对象的3个状态
+			*pending；初始化状态
+			* fullfilled：成功状态
+			* rejected：失败状态
+		4.应用
+			*使用promise实现超时处理
+			* 使用promise封装处理ajax请求
+				let requsest=new XMLHttpRequest();
+				request.onreadystatechange=function(){}
+				request.responseType='json';
+				request.open('GET',url);
+				request.send();						
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h2>gamecc666</h2>
+	</body>
+</html>
+<script type="text/javascript">
+	let promise=new Promise((resolve,reject)=>{ //resolve,reject是两个方法
+		//初始化状态为pending
+		console.log('1');
+		//执行异步操作通常是发送ajax请求，开启定时器
+		setTimeout(()=>{
+			console.log('3');        //异步操作等了5s才出来
+			//根据异步返回结果修改promise状态，如果成功使用resolve(),失败的话使用reject()
+			resolve('haha');   //修改promise状态为fullfilled:成功的状态
+			
+			//reject('wuwu');    //修改promise状态为rejected：失败的状态
+		},5000)
+	})       //此时外面是同步状态
+	console.log('2');
+	
+	promise.then((data)=>{//成功的回调
+		console.log('成功了',data);
+	},(error)=>{//失败的回调
+		console.log('失败了',error)
+	})
+</script>
