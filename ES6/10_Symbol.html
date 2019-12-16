@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+	Symbol：
+		*使用Symbol值定义属性时，值必须放在方括号中
+		*使用Symbol属性时，该属性还是公开属性，不是私有属性
+-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<h2>gamecc666</h2>
+	</body>
+</html>
+<script type="text/javascript">
+	let sy=Symbol('sym1');
+	console.log(sy);
+	console.log(typeof(sy));
+	let sy1=Symbol('sym1');
+	console.log(sy===sy1);
+	console.log('--------------3种写法-------------');
+	let psy=Symbol('key1');
+	//写法1
+	let syObject={};
+	syObject[psy]='gamecc666';
+	console.log(syObject);
+	//写法2
+	let syObject1={
+		[psy]:'gamecc777'
+	};
+	console.log(syObject1);
+	//写法3
+	let syObject2={};
+	Object.defineProperty(syObject2,psy,{value:"gamecc888"});
+	console.log(syObject2);
+	/*
+		得到对象的Symbol属性，可以通过Object.getOwnProoertySymbols()和Reflect.ownKwys()
+		但是不能使用for..in;for..of;也不会被Object.Keys(),Object.getOwnPropertyNames()
+	*/
+	let syObject3={};
+	syObject3[psy]='gamecc999';
+	syObject3[sy1]='gamecc1010';
+	console.log(syObject3);
+	console.log(Object.getOwnPropertySymbols(syObject3));
+	console.log(Reflect.ownKeys(syObject3));
+	let temp=Symbol.for('678');
+	console.log(Symbol.keyFor(psy));
+</script>
