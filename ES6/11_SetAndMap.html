@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+	Set
+		*简介：Set类似数组，但是成员的值都是唯一的，没有重复的值（集合）；
+		*用法：Set本身就是一个构造函数，用来生成Set数据结构
+			  形式1：let map=new Set();
+			  形式2：let map=new Set([1,2,3,4,3,3,4,5,6,7]);
+		*属性：Set.prototype.constructor=>构造函数，默认就是Set()函数
+			  Set.prototype.size=>返回Set实例的成员总数
+		*方法：Set.prototype.add(value)=>添加某个值，返回Set结构本身
+			  Set.prototype.delete(value)=>删除某个值，返回一个布尔值，表示删除是否成功
+			  Set.prototype.has(value)=>返回一个布尔值，表示该值是否存在该实例里面
+			  Set.prototype.clear()=>清除所有成员，没有返回值
+			  --------遍历方法-----------
+			  Set.prototype.keys=>返回键名的遍历器
+			  Set.prototype.values=>返回键值的遍历器
+			  Set.prototype.entries=>返回键值对的遍历器
+			  Set.prototype.forEach=>使用回调函数遍历每个成员
+		*注意：**向Set添加值的时候不会发生类型转换，5和‘5’不一样
+			   **向Set中添加值的时候内部是按照类似精确相等运算符（===）来处理的，但是也有小区别
+				 Set认为NaN等于自身，而精确相等运算符认为NaN不等于自身
+			   **Set的遍历顺序就是插入顺序
+			   **由于Set没有键名只有键值，所以keys和values遍历后的结果一样
+	WeakSet
+		*简介：和Set类似，也是不重复的集合，但是有两个区别:
+				1=>成员只能是对象；
+				2=>对象都是弱引用，即垃圾回收机制不考虑WeakSet对该对象的应用（也就是如果其他对象不在引用该对象的话，
+					垃圾回收机制，会自动回收该对象内存，不考虑是否在WeakSet之中）
+		*用法：WeakSet是一个构造函数，可以使用new命令，创建WeakSet数据结构			  
+			  只要具有Iterable接口的对象，都可以作为WeakSet的参数；该数组的所有成员都会自动成为WeakSet实例对象的成员
+		*构造函数： let wset=new WeakSet()
+		           let wset=new WeakSet(obj)
+		*方法:WeakSet.prototype.add(value)=>向实例中添加一个新成员
+		      WeakSet.prototype.add(value)=>清除实例中的指定成员
+			  WeakSet.prototype.add(value)=>返回一个布尔值，表示某个值知否存在该实例中
+-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Set和Map</title>
+	</head>
+	<body>
+		<h2>gamecc666</h2>
+	</body>
+</html>
+<script type="text/javascript">
+	let set=new Set();
+	set.add({}); 
+	set.add({});
+	console.log('测试两个空对象Set的长度：'+set.size); 
+	let set1=new Set();
+	set1.add(NaN);
+	set1.add(NaN);
+	console.log('测试两个NaN类型的Set的长度：'+set1.size); 
+	let set2=new Set();
+	set2.add(5);
+	set2.add(3);
+	set2.add(3);
+	let isHas= set2.has(5);
+	console.log('添加元素',set2,'是否存在',isHas);
+	let set3=new Set([1,7,3,4,88,5,6,6,6,7,8,9]);
+	let arr=Array.from(set3);
+	console.log('使用set给数组去重：'+arr);
+	for(let item of set3.keys())
+	{
+		console.log('测试keys遍历器：'+item);
+	}
+	for(let item of set3.values()){
+		console.log('测试values遍历器：'+item);
+	}
+	set3.forEach((value,index)=>{
+		console.log('forEach 遍历 index:'+index+'||value:'+value);
+	})
+	//使用Set实现集合的交，并，差集	
+	let set4=new Set([1,2,4]);
+	let set5=new Set([3,5,2]);
+	let union=new Set([...set4,...set5]);
+	console.log('输出集合的并：',union);
+	let intersect=new Set([...set4].filter(x=>set5.has(x)));
+	console.log('输出集合的交：',intersect);
+	let difference=new Set([...set4].filter(x=>!set5.has(x)));
+	console.log('输出集合的差：',difference); 
+	console.log('--------------WeakSet---------------');
+	let arrset=[[2,6],[9,7]];
+	let wset=new WeakSet(arrset);  //放的是数组其实是把数组中的两个对象放进来了，而不是数据本身
+	console.log('weakset对象：',wset);
+	// let arrset1=[1,4,6];
+	// let wset1=new WeakSet(arrset1);
+	// console.log(wset1);           //此时会报错，原因arrset1里面的成员不是对象
+	let arrset1=new WeakSet();
+	let obj={};
+	let obj1={};
+	let foo={};
+	arrset1.add(obj);
+	arrset1.add(obj1);
+	console.log() arrset1.has(obj1);
+	arrset1.has(foo);
+	
+	
+	
+</script>

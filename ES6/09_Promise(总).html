@@ -142,7 +142,7 @@
 		let promise=new Promise(function(resolve,reject){
 			setTimeout(function() {
 				console.log('---挑好购买笔芯---');
-				resolve('新的笔芯');
+				resolve('新的笔芯');   //规定只能传递一个参数，多的话不识别
 			}, 1000);
 		});
 		return promise;
