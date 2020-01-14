@@ -45,10 +45,18 @@
 	               ]);-------------------接收一个数组，数组成员也是键值对数组
 		*注意：只有对同一个对象（除了值类型）的引用，Map结构才将其视为同一个键，这一点非常重要
 	  WeakMap
-	  	*简介：
-	  	*用法：
-	  	构造函数：
-	  	*注意：
+	  	*简介：WeakMap与Map结构类似，也用于生成键值对的集合；
+	  		**两者之间的区别两点：
+				***WeakMap只接受对象作为键名（null除外），不接受其他类型的值作为键名
+				***WeakMap的键名所指向的对象不计入垃圾回收机制
+	  		**两者在API上的区别：
+	  			***WeakMap没有便利操作，只有四个方法可用：get(),set(),has(),delete()
+	  	*目的：有时我们想在某对象上面存放一些数据，但是这会形成对于这个对象的引用
+	  	*构造函数：和Map一样
+	  	*解决问题：内存泄漏
+	  	*主要用腿：
+	  		**DOM节点作为键名（eg:每单点击一下就更新一下状态，一点节点删除就会自动消失）
+	  		**部署私有属性
 -->
 <html>
 	<head>
@@ -57,6 +65,7 @@
 	</head>
 	<body>
 		<h2>gamecc666</h2>
+		<div id="example">hello</div>
 	</body>
 </html>
 <script type="text/javascript">
@@ -199,8 +208,11 @@
 	}
 	let map8=new Map().set(true,7).set({foo:3},['abc']);
 	console.log('情况2：部分键不是字符串',map8);
-	console.log('Json转Map');
 	console.log('WeakMap');
+	let wmap=new WeakMap();
+	let element=document.getElementById('example');
+	wmap.set(element,'someting');
+	console.log('WeakMap测试使用对象作为键:',wmap.get(element));
 </script>
 
 
