@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="246a8eb6-5b31-4e90-950c-51a1199240b3" name="默认的" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,31 +16,27 @@
   </component>
   <component name="ProjectId" id="1UtD1dyVoBh7tLs3F7D8KR4Ina8" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="ServiceViewManager">
-    <option name="allServicesViewState">
-      <serviceView>
-        <treeState>
-          <expand />
-          <select />
-        </treeState>
-      </serviceView>
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
     </option>
   </component>
   <component name="SvnConfiguration">
@@ -58,10 +53,20 @@
       <workItem from="1576166939407" duration="135000" />
       <workItem from="1576204945908" duration="184000" />
       <workItem from="1576205188245" duration="139000" />
+      <workItem from="1578762065541" duration="98000" />
+      <workItem from="1578762581147" duration="30000" />
+      <workItem from="1578762640191" duration="6179000" />
+      <workItem from="1578969442850" duration="3596000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="293" y="49" width="778" height="678" key="search.everywhere.popup" timestamp="1578799079257">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="293" y="49" width="778" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1578799079257" />
   </component>
 </project>

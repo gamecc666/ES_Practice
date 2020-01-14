@@ -33,6 +33,22 @@
 		*方法:WeakSet.prototype.add(value)=>向实例中添加一个新成员
 		      WeakSet.prototype.add(value)=>清除实例中的指定成员
 			  WeakSet.prototype.add(value)=>返回一个布尔值，表示某个值知否存在该实例中
+	  Map
+	  	*简介：传统上的Js对象都是通过键值对的集合，并且键都是采用字符串产生了很大的局限性；基于这样的情况就产生了Map对象
+	  		   在Map对象里面的键不受限制（不仅仅局限于字符串）
+	    *用法：对于对象来说就是键-值，而Map是值-值；Map是一种更加完善的Hash结构，如果你需要的是键值对的数据结构，Map比
+	    	   对象要好的多
+	    *构造函数：let map=new Map();
+	               let map=new Map([
+	               		['name','张三']，
+	               		[‘title’,'Author']
+	               ]);-------------------接收一个数组，数组成员也是键值对数组
+		*注意：只有对同一个对象（除了值类型）的引用，Map结构才将其视为同一个键，这一点非常重要
+	  WeakMap
+	  	*简介：
+	  	*用法：
+	  	构造函数：
+	  	*注意：
 -->
 <html>
 	<head>
@@ -93,9 +109,249 @@
 	let foo={};
 	arrset1.add(obj);
 	arrset1.add(obj1);
-	console.log() arrset1.has(obj1);
+	console.log( arrset1.has(obj1));
 	arrset1.has(foo);
-	
-	
-	
+	//Map构造函数的简单使用
+	console.log('--------------Map---------------');
+	let map1=new Map();
+	let k={p:'Hello World'};
+	map1.set(k,'gamcc666');
+	console.log('Map1构造函数第一种方式');
+	console.log('map1键对应的值：',map1.get(k));
+	console.log('map1是否包含键k：',map1.has(k));
+	console.log('map1删除键k:',map1.delete(k));
+	console.log('删除之后map1是否还包含键k:',map1.has(k));
+	console.log('Map构造函数第二种方式');
+	let map2=new Map([
+			['name','gamecc'],
+			['age',25]
+	]);
+	console.log('map2大小',map2.size);
+	console.log('map2是否拥有属性name：',map2.has('name'));
+	console.log('map2中name对应的值：',map2.get('name'));
+	console.log('map2是否包含键age:',map2.has('age'));
+	console.log('map2中age对应的值：',map2.get('age'));
+	map2.set('age',56);            //一个键赋值两次的话后者会覆盖前者
+	console.log('map2重新赋值age之后的值：',map2.get('age'));
+	console.log('map2读取不存在的键key:',map2.get('key'));     //读取不存在的键
+	console.log('只有对同一对象(除了值)的引用，Map才会识别为同一个键');
+	let map3=new Map();
+	map3.set(['age'],44);
+	console.log('map3测试对象的引用：',map3.get(['age']));    //对于对象来说如果不是对象的应用的话就会出错
+	let k1=['sex'];
+	let k2=['sex'];
+	map3.set(k1,'gamecc');
+	map3.set(k2,'666');
+	console.log('map3输出对象值相同但是引用不同的值：',map3.get(k1),'||',map3.get(k2));
+	map3.clear();
+	console.log('map3清除所有值之后的大小测试：',map3.size);
+	console.log('Map转数组');
+	let map4=new Map();
+	map4.set(true,7);
+	map4.set({foo:3},['abd']);
+	console.log([...map4]);
+	console.log('数组转Map');
+	let map5=new Map([
+			[true,7],
+			[{foo:3},['abc']]
+	]);
+	console.log(map5);
+	console.log('Map转对象');
+	/*
+		注意：转对象的时候有两种情况如下
+				*所有键都是字符串=>它可以无损的转为对象
+				*有非字符串的键=>它会键键名转换为字符串然后再作为对象的键名
+	*/
+	function MapToObj(map){
+		let obj =Object.create(null);
+		for(let [k,v] of map){
+			obj[k]=v;
+		}
+		return obj;
+	}
+	let map6=new Map()
+		.set(4,true)
+		.set('no',false);
+	console.log(MapToObj(map6));
+	console.log('对象转Map');
+	function ObjToMap(obj){
+		let map=new Map();
+		for (let k of Object.keys(obj)){
+			map.set(k,obj[k]);
+		}
+		return map;
+	}
+	console.log(ObjToMap({yes:true,no:false}));
+	console.log('Map转Json');
+	/*
+		注意：转为JSON分为两种情况
+				*所有键都是字符串=>可以选择转换为对象JSON(因为JS里面的对象都是以字符串为键的)
+				*部分键不是字符串=>可以选择转换为数组JSON(如果把非字符串键转为对象的字符串键的话没法访问，固转为数组更好判断，识别，处理)
+	*/
+	function MapToJson(map){
+		return JSON.stringify(MapToObj(map));
+		//return JSON.stringify([...map]);
+	}
+	let map7=new Map().set('yes',true).set('no',false);
+	console.log('情况1：所有键都是字符串',MapToJson(map7));
+	function MapToArrayJson(map){
+		return JSON.stringify([...map]);
+	}
+	let map8=new Map().set(true,7).set({foo:3},['abc']);
+	console.log('情况2：部分键不是字符串',map8);
+	console.log('Json转Map');
+	console.log('WeakMap');
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
